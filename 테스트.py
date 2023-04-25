@@ -41,7 +41,7 @@ def write_csv(data, timestamp):
     date = timestamp.strftime('%Y-%m-%d')
 
     #File name: Date_market_orderbook.csv
-    csv_directory = "./" + date + "_" + market + "_orderbook.csv"
+    csv_directory = "./raw/" + date + "_" + market + "_orderbook.csv"
 
     #Save header when file doesn't exists
     should_write_header = os.path.exists(csv_directory)
