@@ -1,0 +1,16 @@
+서버이름: s187925f7df1
+서버 접속용 공인 IP : 106.10.57.227
+외부 포트: 2023
+비공인 IP: 10.41.74.132
+관리자 이름: root
+비밀번호: P7EUA9Pg7nAi
+
+ssh root@106.10.57.227 -p 2023
+
+P7EUA9Pg7nAi
+
+apt install python-pip
+
+pip install
+matplotlib
+
