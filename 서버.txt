@@ -6,16 +6,18 @@
 비밀번호: P7EUA9Pg7nAi
 
 서버 접속 명령어: ssh root@106.10.57.227 -p 2023
+Git 로컬저장소 위치: /root/AiCryptoProject
 
 github 연동 git clone [github URL].git 
 github 저장소 위치 확인: git remote -v
 github 로컬 저장소 접속: cd [your_git]
-작업 위치 내 파일 확인: dir
+작업 위치 내 파일 확인: ls
 파일 삭제: rm [filename]
 프로그램 실행: echo '[market]' '[currency]' | nohup python [filename]
 프로그램 나가기: ctrl+z
 프로세스 확인: ps -ef
 프로세스 종료: kill -9 PID
 백그라운드 실행: bg
+윈도우에서 서버 파일 가져오기:  scp -P [port] [Username]@[ServerIP]:[FileDirectory] '[WindowsSavingDirectory]'
 
 
