@@ -18,6 +18,11 @@ github 로컬 저장소 접속: cd [your_git]
 프로세스 확인: ps -ef
 프로세스 종료: kill -9 PID
 백그라운드 실행: bg
+
 윈도우에서 서버 파일 가져오기:  scp -P [port] [Username]@[ServerIP]:[FileDirectory] '[WindowsSavingDirectory]'
+**파일 전송 전 관리자 권한 cmd에서 net start sshd 입력**
+**방화벽 -> 고급설정 -> 포트 income 설정**
+
+
 
 
