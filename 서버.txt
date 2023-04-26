@@ -5,12 +5,18 @@
 관리자 이름: root
 비밀번호: P7EUA9Pg7nAi
 
-ssh root@106.10.57.227 -p 2023
+서버 접속 명령어: ssh root@106.10.57.227 -p 2023
 
-P7EUA9Pg7nAi
+github 연동 git clone [github URL].git 
+github 저장소 위치 확인: git remote -v
+github 로컬 저장소 접속: cd [your_git]
+작업 위치 내 파일 확인: dir
+파일 삭제: rm [filename]
+프로그램 실행: nohup python [filename]
+프로그램 나가기: ctrl+z
+프로세스 확인: ps -f
+프로세스 종료: kill -9 PID
+호스트 권한 
+백그라운드 실행: bg
 
-apt install python-pip
-
-pip install
-matplotlib
 
