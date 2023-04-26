@@ -20,6 +20,7 @@ github 로컬 저장소 접속: cd [your_git]
 백그라운드 실행: bg
 
 윈도우에서 서버 파일 가져오기:  scp -P [port] [Username]@[ServerIP]:[FileDirectory] '[WindowsSavingDirectory]'
+**파일 전송 전 리눅스 ssh 서버 설치: sudo apt install openssh-server**
 **파일 전송 전 관리자 권한 cmd에서 net start sshd 입력**
 **방화벽 -> 고급설정 -> 포트 income 설정**
 
