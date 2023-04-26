@@ -43,6 +43,9 @@ def write_csv(data, timestamp):
     #File name: Date_market_orderbook.csv
     csv_directory = "./raw/" + date + "_" + market + "_orderbook.csv"
 
+    if not os.path.isdir('./raw'):
+        os.makedirs('./raw')
+
     #Save header when file doesn't exists
     should_write_header = os.path.exists(csv_directory)
 
