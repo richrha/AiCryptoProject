@@ -41,7 +41,7 @@ def write_csv(data, timestamp):
     date = timestamp.strftime('%Y-%m-%d')
 
     #File name: Date_market_orderbook.csv
-    csv_directory = "./raw/" + date + "_" + market + "_orderbook.csv"
+    csv_directory = "./raw/" + date + "-" + market + '-' + currency + "-orderbook.csv"
 
     if not os.path.isdir('./raw'):
         os.makedirs('./raw')
@@ -62,13 +62,15 @@ def pull_csv_orderbook():
     while(1):
         # setting pull time interval
         time_interval = datetime.now() - timestamp
-        if (time_interval.total_seconds() < 5):
+        if (time_interval.total_seconds() < 1):
             continue
 
         timestamp = datetime.now()
-
-        response = requests.get(url_dictionary[market])
-
+        try: 
+            response = requests.get(url_dictionary[market])
+        except:
+            print("Error has occured in " + timestamp.strftime('%Y-%m-%d'))
+            continue
         orderbook = response.json()
         
         data = orderbook['data']
@@ -77,11 +79,13 @@ def pull_csv_orderbook():
         bids = (pd.DataFrame(data['bids'])).apply(pd.to_numeric, errors='ignore')
         bids.sort_values('price', ascending=False, inplace=True) ##ascending
         bids = bids.reset_index(); del bids['index']
+        bids['type'] = 0
 
         ##aks = sell
         asks = (pd.DataFrame(data['asks'])).apply(pd.to_numeric, errors='ignore')
         asks.sort_values('price', ascending=True, inplace=True) ##descending
         asks = asks.reset_index(); del asks['index']
+        asks['type'] = 1
 
         #rearranged orderbook
         new_orderbook = pd.concat([bids, asks])
@@ -90,14 +94,15 @@ def pull_csv_orderbook():
 
         """
         new_orderbook format:
-        Bid 1 | Lowest price      |   quantity, timestamp
-        Bid 2 | 2nd lowest price  |   quantity, timestamp
-         ...  |        ...        |           ...
-        Bid n | Highest price     |   quantity, timestamp
-        Ask 1 | Highest price     |   quantity, timestamp
-        Ask 2 | 2nd highest price |   quantity, timestamp
-         ...  |        ...        |           ...
-        Ask n |Lowest price       |  quantity, timestamp
+                Price             |   quantity   |type |  timestamp
+        Bid 1 : Lowest price      |   quantity   |  0  |  timestamp
+        Bid 2 : 2nd lowest price  |   quantity   |  0  |  timestamp
+         ...  :        ...        |      ...     | ... |     ...
+        Bid n : Highest price     |   quantity   |  0  |  timestamp
+        Ask 1 : Highest price     |   quantity   |  1  |  timestamp
+        Ask 2 : 2nd highest price |   quantity   |  1  |  timestamp
+         ...  :        ...        |      ...     | ... |     ...
+        Ask n :Lowest price       |   quantity   |  1  |  timestamp
         """
 
         #print(new_orderbook)
