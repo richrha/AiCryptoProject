@@ -69,7 +69,7 @@ def pull_csv_orderbook():
         try: 
             response = requests.get(url_dictionary[market])
         except:
-            print("Error has occured in " + timestamp.strftime('%Y-%m-%d'))
+            print("Error has occured in " + timestamp.strftime('%Y-%m-%d %H:%M:%S'))
             continue
         orderbook = response.json()
         
