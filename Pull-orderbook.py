@@ -37,6 +37,12 @@ def default_settings():
 
     return setting
 
+def error_message(timestamp):
+    File = open('./raw/error_log.txt', 'a')
+    File.write("Error has occured in " + timestamp.strftime('%Y-%m-%d %H:%M:%S') + "\n")
+    File.close()
+
+
 def write_csv(data, timestamp):
     date = timestamp.strftime('%Y-%m-%d')
 
@@ -69,7 +75,7 @@ def pull_csv_orderbook():
         try: 
             response = requests.get(url_dictionary[market])
         except:
-            print("Error has occured in " + timestamp.strftime('%Y-%m-%d %H:%M:%S'))
+            error_message(timestamp)
             continue
         orderbook = response.json()
         
