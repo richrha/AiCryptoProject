@@ -72,6 +72,8 @@ def pull_csv_orderbook():
             continue
 
         timestamp = datetime.now()
+        request_time = timestamp.strftime('%Y-%M-%D %H:%M:%S')
+        
         try: 
             response = requests.get(url_dictionary[market])
         except:
@@ -96,7 +98,7 @@ def pull_csv_orderbook():
         #rearranged orderbook
         new_orderbook = pd.concat([bids, asks])
         new_orderbook['quantity'] = new_orderbook['quantity'].round(decimals=4)
-        new_orderbook['timestamp'] = timestamp
+        new_orderbook['timestamp'] = request_time
 
         """
         new_orderbook format:
