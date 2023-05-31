@@ -13,6 +13,12 @@ import numpy as np
 import collections
 import matplotlib as plt
 from easydict import EasyDict
+import atexit
+
+def handle_exit():
+    ## runs when program is shut
+    print((datetime.now()).strftime('%Y-%M-%D %H:%M:%S'))
+
 
 def default_settings(): 
     ##Setting crypto market & crypto currency after run
@@ -125,9 +131,12 @@ def reprocess_tradebook(tradebook):
     tradebook = pd.DataFrame(tradebook).apply(pd.to_numeric, errors='ignore')
 
     #change type to 0 and 1
-    tradebook.loc[tradebook['type'] == 'bid', 'type'] = 0
-    tradebook.loc[tradebook['type'] == 'ask', 'type'] = 1 
-
+    try:
+        tradebook.loc[tradebook['type'] == 'bid', 'type'] = 0
+        tradebook.loc[tradebook['type'] == 'ask', 'type'] = 1 
+    except:
+        tradebook = previous_tradebook
+        
     tradebook.sort_values('transaction_date', ascending = True, inplace = True) ## ascending
     
     if previous_tradebook.empty:
