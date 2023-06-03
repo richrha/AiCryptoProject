@@ -230,7 +230,12 @@ def main():
     top_quantity, mean_quantity, mid_quantity = [0,0], [0,0], [0,0]
 
     file = ['./raw/2023-05-25-Bithumb-BTC-orderbook.csv', './raw/2023-05-25-Bithumb-BTC-tradebook.csv']
-    headname = "-".join("".join(file[0].split('/')[2]).split('-')[0:5])
+    file[0] = input('type file name: ')
+    try:
+        headname = "-".join("".join(file[0].split('/')[2]).split('-')[0:5])
+    except:
+        print('ERROR!!!!')
+        exit()
     
     orderbook, level, group_n = read_orderbook(file[0])
 
