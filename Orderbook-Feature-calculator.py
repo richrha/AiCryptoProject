@@ -225,7 +225,7 @@ def main():
     top_quantity, mean_quantity, mid_quantity = [0,0], [0,0], [0,0]
 
     file = ['./raw/2023-05-25-Bithumb-BTC-orderbook.csv', './raw/2023-05-25-Bithumb-BTC-tradebook.csv']
-    #file[0] = input('type file name: ')
+    file[0] = input('type file name: ')
     try:
         headname = "-".join("".join(file[0].split('/')[2]).split('-')[0:5])
     except:
